@@ -47,7 +47,7 @@ return [
     //other stuff
     'providers' => [
         //other stuff
-        Jlorente\Laravel\Queue\TransactionCommitQueueServiceProvider::class,
+        Jlorente\Laravel\Queue\TransactionCommit\TransactionCommitQueueServiceProvider::class,
     ];
 ];
 ```
