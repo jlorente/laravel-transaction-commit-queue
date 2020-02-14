@@ -1,7 +1,8 @@
 Laravel Transaction Commit Queue
 ================================
 
-A Laravel queue connector to process jobs on successful transactions commits.
+A Laravel queue connector to process jobs on successful database transactions 
+commits.
 
 This connector is very similar to the "sync" connector with the difference that 
 jobs are executed after the database transaction has been committed instead of 
