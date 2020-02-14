@@ -1,0 +1,39 @@
+{
+    "name": "jlorente/laravel-transaction-commit-queue",
+    "version": "1.0.0",
+    "description": "A Laravel queue connector to process jobs after successful transactions commits",
+    "keywords": [
+        "php",
+        "jlorente",
+        "laravel",
+        "queue",
+        "transaction commit",
+        "database",
+        "transcation",
+        "commit",
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "José Lorente",
+            "email": "jose.lorente.martin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/support": "~5.6 || ^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jlorente\\Laravel\\Queue\\TransactionCommit\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jlorente\\Laravel\\Queue\\TransactionCommit\\TransactionCommitQueueServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
