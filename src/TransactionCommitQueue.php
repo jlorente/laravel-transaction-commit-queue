@@ -19,10 +19,10 @@
 
 namespace Jlorente\Laravel\Queue\TransactionCommit;
 
-use Illuminate\Contracts\Queue\Queue as QueueContract;
 use Illuminate\Contracts\Queue\Job;
-use Illuminate\Queue\Queue;
+use Illuminate\Contracts\Queue\Queue as QueueContract;
 use Illuminate\Queue\Jobs\SyncJob;
+use Illuminate\Queue\Queue;
 use Illuminate\Support\Facades\DB;
 use SplQueue;
 
@@ -69,13 +69,24 @@ class TransactionCommitQueue extends Queue implements QueueContract
         $queueName = $this->getQueue($queue);
 
         $queueJob = $this->resolveJob($this->createPayload($job, $queueName, $data), $queue);
-        if (DB::connection($queue)->transactionLevel() === 0) {
+
+        $this->fireOrQueueJob($queue, $queueJob, $queueName);
+
+        return true;
+    }
+
+    /**
+     * @param string|null $queue
+     * @param SyncJob $queueJob
+     * @param string $queueName
+     */
+    private function fireOrQueueJob(?string $queue, SyncJob $queueJob, string $queueName)
+    {
+        if (DB::connection($queue)->transactionLevel() === 0 || config('transaction-commit-queue.dispatch_instantly')) {
             $this->fireJob($queueJob);
         } else {
             $this->pushToQueue($queueName, $queueJob);
         }
-
-        return true;
     }
 
     /**

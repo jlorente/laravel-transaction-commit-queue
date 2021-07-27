@@ -41,6 +41,10 @@ class TransactionCommitQueueServiceProvider extends ServiceProvider
     {
         $this->registerTransactionCommitConnector($this->app['queue']);
         $this->registerTransactionCommitEvent();
+
+        $this->publishes([
+            __DIR__.'/config/transaction-commit-queue.php' => config_path('transaction-commit-queue.php')
+        ], 'config');
     }
 
     /**
