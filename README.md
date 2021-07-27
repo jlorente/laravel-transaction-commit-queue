@@ -67,6 +67,12 @@ return [
 ];
 ```
 
+And publish the configuration file.
+
+```bash
+$ php artisan vendor:publish --provider='Jlorente\Laravel\Queue\TransactionCommit\TransactionCommitQueueServiceProvider'
+```
+
 ## Usage
 
 See the [Laravel documentation](https://laravel.com/docs/master/queues) to learn 
@@ -147,6 +153,12 @@ DB::connection('other-connection')->transaction(function() {
     })->onConnection('transaction-commit')->onQueue('other-connection');
 });
 ```
+
+### Testing
+
+If you use a transaction rollback strategy for testing against the datatabase, you can 
+set the environment variable TRANSACTION_COMMIT_DISPATCH_INSTANTLY in order to dispatch 
+the jobs instantly instead of on transaction commit.
 
 ## Further Considerations
 
