@@ -20,7 +20,7 @@
 namespace Jlorente\Laravel\Queue\TransactionCommit;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Queue\QueueManager;
 
 /**
